@@ -1677,8 +1677,8 @@ unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfS
     int DiffMode = 1;
     if (fTestNet) DiffMode = 2;
     else if (pindexLast->nHeight+1 >= 33500 && pindexLast->nHeight+1 < HEIGHT_DIFF_ADJ_TARGET_SPACKING_WORK_V3_INIT) DiffMode = 2;
-    else if (pindexLast->nHeight+1 >= HEIGHT_DIFF_ADJ_TARGET_SPACKING_WORK_V3_INIT && pindexLast->nHeight+1 < HEIGHT_CHAIN_SWITCH) DiffMode = 3;
-    else if (pindexLast->nHeight+1 >= HEIGHT_CHAIN_SWITCH) DiffMode = 2;
+    else if (pindexLast->nHeight+1 >= HEIGHT_DIFF_ADJ_TARGET_SPACKING_WORK_V3_INIT && pindexLast->nHeight+1 < HEIGHT_CHAIN_SWITCH-2) DiffMode = 3;
+    else if (pindexLast->nHeight+1 >= HEIGHT_CHAIN_SWITCH-2) DiffMode = 2;
     
     if (DiffMode == 1) return GetNextTargetRequired_v1(pindexLast, fProofOfStake);
     else if (DiffMode == 2) return MagiQuantumWave(pindexLast, fProofOfStake);
