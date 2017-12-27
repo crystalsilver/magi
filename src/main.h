@@ -119,7 +119,7 @@ static const uint256 hashGenesisBlockTestNet ("0x000005fef85d8e77a4307afc8a9dc8f
 #define HEIGHT_CHAIN_SWITCH 1599450
 
 static const int64 nMaxClockDrift = 2 * 60 * 60;        // two hours
-inline int64 GetMaxClockDrift(int nHeight) { return ( (nHeight > HEIGHT_CHAIN_SWITCH) ? (5 * 60) : (2 * 60 * 60) ); }
+inline int64 GetMaxClockDrift(int nHeight) { return ( (nHeight > HEIGHT_CHAIN_SWITCH) ? (2 * 60 * 60) : (2 * 60 * 60) ); }
 inline int64 PastDrift(int64 nTime, int nHeight) { return ( nTime - GetMaxClockDrift(nHeight) ); }
 inline int64 FutureDrift(int64 nTime, int nHeight) { return ( nTime + GetMaxClockDrift(nHeight) ); }
 
@@ -1062,7 +1062,7 @@ public:
     int64 GetMaxTransactionTime() const
     {
         int64 maxTransactionTime = 0;
-        BOOST_FOREACH(const CTransaction& tx, vtx)
+        BOOST_FOREACH(const CTransaction& tx, vtx) 
             maxTransactionTime = std::max(maxTransactionTime, (int64)tx.nTime);
         return maxTransactionTime;
     }
